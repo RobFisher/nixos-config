@@ -12,20 +12,21 @@
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.systemd.enable = true;
+  boot.plymouth.enable = true;
 
-  boot.initrd.luks.devices."luks-8ff4eeec-114f-470a-a8a3-aaccece59625".device = "/dev/disk/by-uuid/8ff4eeec-114f-470a-a8a3-aaccece59625";
+  boot.initrd.luks.devices."luks-a4516463-77e1-4f4c-9225-73d93419e9c7".device = "/dev/disk/by-uuid/a4516463-77e1-4f4c-9225-73d93419e9c7";
   # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  ##boot.initrd.secrets = {
+  #  "/crypto_keyfile.bin" = null;
+  #};
 
-  boot.loader.grub.enableCryptodisk=true;
+  #boot.loader.grub.enableCryptodisk=true;
 
-  boot.initrd.luks.devices."luks-c6e408fa-736b-4c4a-9039-bf185f271250".keyFile = "/crypto_keyfile.bin";
-  boot.initrd.luks.devices."luks-8ff4eeec-114f-470a-a8a3-aaccece59625".keyFile = "/crypto_keyfile.bin";
+  #boot.initrd.luks.devices."luks-c6e408fa-736b-4c4a-9039-bf185f271250".keyFile = "/crypto_keyfile.bin";
+  #boot.initrd.luks.devices."luks-8ff4eeec-114f-470a-a8a3-aaccece59625".keyFile = "/crypto_keyfile.bin";
   networking.hostName = "nixos"; # Define your hostname.
 
   # filesystem options for SSD optimisation
@@ -160,4 +161,6 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.nixPath = [ "nixpkgs=/etc/channels/nixpkgs" "nixos-config=/etc/nixos/configuration.nix" "/nix/var/nix/profiles/per-user/root/channels" ];
+  environment.etc."channels/nixpkgs".source = inputs.nixpkgs.outPath;
 }

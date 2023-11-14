@@ -11,7 +11,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
-        nixos-hardware.nixosModules.framework
+        nixos-hardware.nixosModules.framework-11th-gen-intel
         #home-manager.nixosModules.home-manager
         #{
         #  home-manager.useGlobalPkgs = true;
