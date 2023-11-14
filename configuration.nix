@@ -27,7 +27,7 @@
 
   #boot.initrd.luks.devices."luks-c6e408fa-736b-4c4a-9039-bf185f271250".keyFile = "/crypto_keyfile.bin";
   #boot.initrd.luks.devices."luks-8ff4eeec-114f-470a-a8a3-aaccece59625".keyFile = "/crypto_keyfile.bin";
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "thorin"; # Define your hostname.
 
   # filesystem options for SSD optimisation
   services.fstrim.enable = true;

@@ -6,7 +6,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = { self, nixpkgs, nixos-hardware, home-manager } @inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.thorin = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
