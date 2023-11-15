@@ -18,27 +18,12 @@
   boot.plymouth.enable = true;
 
   boot.initrd.luks.devices."luks-a4516463-77e1-4f4c-9225-73d93419e9c7".device = "/dev/disk/by-uuid/a4516463-77e1-4f4c-9225-73d93419e9c7";
-  # Setup keyfile
-  ##boot.initrd.secrets = {
-  #  "/crypto_keyfile.bin" = null;
-  #};
 
-  #boot.loader.grub.enableCryptodisk=true;
-
-  #boot.initrd.luks.devices."luks-c6e408fa-736b-4c4a-9039-bf185f271250".keyFile = "/crypto_keyfile.bin";
-  #boot.initrd.luks.devices."luks-8ff4eeec-114f-470a-a8a3-aaccece59625".keyFile = "/crypto_keyfile.bin";
   networking.hostName = "thorin"; # Define your hostname.
 
   # filesystem options for SSD optimisation
   services.fstrim.enable = true;
   
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
