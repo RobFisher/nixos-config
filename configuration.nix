@@ -111,6 +111,7 @@
   #  wget
     wezterm
     nushellFull
+    nushellPlugins.formats
     vim
     git
     helix
