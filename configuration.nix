@@ -119,6 +119,8 @@
     bat
     ripgrep
     neofetch
+    rclone
+    logseq
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
