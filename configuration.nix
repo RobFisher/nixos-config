@@ -124,6 +124,12 @@
     keepassxc
   ];
 
+  fileSystems."/mnt/network-shared-files" = {
+    device = "samwise.super:/home/starlord/network-shared-files";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
