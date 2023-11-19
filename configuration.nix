@@ -19,6 +19,19 @@
 
   boot.initrd.luks.devices."luks-a4516463-77e1-4f4c-9225-73d93419e9c7".device = "/dev/disk/by-uuid/a4516463-77e1-4f4c-9225-73d93419e9c7";
 
+  # set up sops for secrets
+  sops.defaultSopsFile = ./secrets/example.yaml;
+  sops.age.sshKeyPaths = [ "/home/rob/.ssh/id_ed25519" ];
+  # This is using an age key that is expected to already be in the filesystem
+  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  # This will generate a new key if the key specified above does not exist
+  sops.age.generateKey = true;
+
+  # now specify the secrets that will be placed in /run/secrets
+  # test with e.g. sudo cat /run/secrets/my_secret
+  sops.secrets.example_key = {};
+  sops.secrets.my_secret = {};
+
   networking.hostName = "thorin"; # Define your hostname.
 
   # filesystem options for SSD optimisation
