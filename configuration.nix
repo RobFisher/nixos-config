@@ -19,6 +19,12 @@
 
   boot.initrd.luks.devices."luks-a4516463-77e1-4f4c-9225-73d93419e9c7".device = "/dev/disk/by-uuid/a4516463-77e1-4f4c-9225-73d93419e9c7";
 
+  # sleep then hibernate
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=30m
+    SuspendState=mem
+  '';
+
   # set up sops for secrets
   sops.defaultSopsFile = ./secrets/example.yaml;
   sops.age.sshKeyPaths = [ "/home/rob/.ssh/id_ed25519" ];
