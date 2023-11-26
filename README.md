@@ -15,7 +15,7 @@ nixos-rebuild build --flake .
 nvd diff /run/current-system result
 
 # if happy, switch to the updated packages
-sudo nixos-rebuild switch
+sudo nixos-rebuild switch --flake .
 ```
 
 Consider rebooting if the kernel has been updated.
