@@ -25,6 +25,11 @@
     SuspendState=mem
   '';
 
+  systemd.tmpfiles.rules = [
+    "d /mnt/media 1755 root root"
+    "d /mnt/backup 1755 root root"
+  ];
+
   # set up sops for secrets
   sops.defaultSopsFile = ./secrets/example.yaml;
   sops.age.sshKeyPaths = [ "/home/rob/.ssh/id_ed25519" ];
