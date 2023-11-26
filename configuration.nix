@@ -142,6 +142,7 @@
     rclone
     logseq
     keepassxc
+    tigervnc
   ];
 
   fileSystems."/mnt/network-shared-files" = {
