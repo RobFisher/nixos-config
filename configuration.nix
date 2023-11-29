@@ -151,6 +151,10 @@
     logseq
     keepassxc
     tigervnc
+    imlib2Full # for feh
+    feh
+    mplayer
+    kmplayer
   ];
 
   fileSystems."/mnt/network-shared-files" = {
