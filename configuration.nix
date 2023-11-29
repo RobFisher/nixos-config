@@ -51,6 +51,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Network diagnostics tool
+  programs.mtr.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/London";
 
