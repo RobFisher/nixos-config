@@ -155,6 +155,25 @@
     feh
     mplayer
     kmplayer
+
+    (vscode-with-extensions.override {
+      vscodeExtensions = with vscode-extensions; [
+      bbenoist.nix
+      arrterian.nix-env-selector
+      ms-python.python
+      ms-azuretools.vscode-docker
+      ms-vscode-remote.remote-ssh
+      rust-lang.rust-analyzer
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        # this is just an example; TODO: figure out how to find the correct version number
+        name = "remote-ssh-edit";
+        publisher = "ms-vscode-remote";
+        version = "0.47.2";
+        sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+      }
+      ];
+    })
   ];
 
   fileSystems."/mnt/network-shared-files" = {
