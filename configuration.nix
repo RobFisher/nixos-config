@@ -164,6 +164,7 @@
       ms-azuretools.vscode-docker
       ms-vscode-remote.remote-ssh
       rust-lang.rust-analyzer
+      vadimcn.vscode-lldb
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         # this is just an example; TODO: figure out how to find the correct version number
