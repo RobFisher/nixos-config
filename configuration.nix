@@ -131,6 +131,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # logseq that uses the correct Electron version
+  # is not yet released.
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
