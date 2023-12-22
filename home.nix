@@ -24,6 +24,36 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
+  # starship - an customizable prompt for any shell
+  programs.starship = {
+    enable = true;
+    # custom settings
+    settings = {
+      add_newline = false;
+      aws.disabled = true;
+      gcloud.disabled = true;
+      line_break.disabled = true;
+    };
+  };
+
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+    bashrcExtra = ''
+      eval "$(starship init bash)"
+    '';
+  };
+
+  programs.nushell = {
+    enable = true;
+    extraEnv = ''
+      mkdir ~/.cache/starship
+      starship init nu | save -f ~/.cache/starship/init.nu
+    '';
+    extraConfig = ''
+      use ~/.cache/starship/init.nu
+    '';
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
