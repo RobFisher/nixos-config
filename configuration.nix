@@ -51,6 +51,20 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  networking.firewall = {
+   # wg-quick up configures the firewall properly but NetworkManager does not,
+   # so if we want the convenience of turning the VPN on and off with the tray icon
+   # we fix the rpfilter problem here.
+   extraCommands = ''
+     ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
+     ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
+   '';
+   extraStopCommands = ''
+     ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
+     ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
+   '';
+  };
+
   # Network diagnostics tool
   programs.mtr.enable = true;
 
@@ -159,6 +173,7 @@
     mplayer
     kmplayer
     nixd
+    wireguard-tools
   ];
 
   fileSystems."/mnt/network-shared-files" = {
