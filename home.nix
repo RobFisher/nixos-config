@@ -43,6 +43,10 @@
       eval "$(starship init bash)"
       neofetch
     '';
+    shellAliases = {
+      cd = "z";
+      cdi = "zi";
+    };
   };
 
   programs.nushell = {
@@ -54,6 +58,16 @@
     extraConfig = ''
       use ~/.cache/starship/init.nu
     '';
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
   };
 
   programs.helix = {
