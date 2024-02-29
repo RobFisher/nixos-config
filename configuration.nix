@@ -136,7 +136,6 @@
     description = "rob";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
       kate
     #  thunderbird
     ];

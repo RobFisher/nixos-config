@@ -60,6 +60,18 @@
     '';
   };
 
+  programs.firefox = {
+    enable = true;
+    profiles.rob = {
+      isDefault = true;
+      settings = {
+        "browser.ctrlTab.sortByRecentlyUsed" = true;
+        "browser.startup.homepage" = "about:blank";
+        "browser.newtabpage.enabled" = false;
+      };
+    };
+  };
+
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
