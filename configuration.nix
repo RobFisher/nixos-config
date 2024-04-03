@@ -176,7 +176,7 @@
   ];
 
   fileSystems."/mnt/network-shared-files" = {
-    device = "samwise.super:/home/starlord/network-shared-files";
+    device = "packmule.super:/mnt/packmule_pool/backup/samwise_rob_home/network-shared-files";
     fsType = "nfs";
     options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
   };
