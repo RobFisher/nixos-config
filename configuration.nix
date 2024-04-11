@@ -4,7 +4,56 @@
 
 { lib, config, pkgs, inputs, ... }:
 
+# Workaround for broken Electron
+# Remove this when this fix makes it to unstable: https://github.com/NixOS/nixpkgs/issues/302457
+# Track it here: https://nixpk.gs/pr-tracker.html?pr=302544
+# note that I seem to be replacing version 27 with 28 here (unlike the published workaround)
+let
+  myOverlay = self: super: {
+      electron_27 = pkgs.electron_28.overrideAttrs
+        (oldAttrs: rec {
+
+          buildCommand =
+            let
+              electron-unwrapped = pkgs.electron_28.passthru.unwrapped.overrideAttrs (oldAttrs: rec {
+                postPatch = builtins.replaceStrings [ "--exclude='src/third_party/blink/web_tests/*'" ] [ "--exclude='src/third_party/blink/web_tests/*' --exclude='src/content/test/data/*'" ] oldAttrs.postPatch;
+              });
+            in
+            ''
+              gappsWrapperArgsHook
+              mkdir -p $out/bin
+              makeWrapper "${electron-unwrapped}/libexec/electron/electron" "$out/bin/electron" \
+                "''${gappsWrapperArgs[@]}" \
+                --set CHROME_DEVEL_SANDBOX $out/libexec/electron/chrome-sandbox
+
+              ln -s ${electron-unwrapped}/libexec $out/libexec
+            '';
+        });
+      electron = pkgs.electron.overrideAttrs
+        (oldAttrs: rec {
+          buildCommand =
+            let
+              electron-unwrapped = pkgs.electron.passthru.unwrapped.overrideAttrs (oldAttrs: rec {
+                postPatch = builtins.replaceStrings [ "--exclude='src/third_party/blink/web_tests/*'" ] [ "--exclude='src/third_party/blink/web_tests/*' --exclude='src/content/test/data/*'" ] oldAttrs.postPatch;
+              });
+            in
+            ''
+              gappsWrapperArgsHook
+              mkdir -p $out/bin
+              makeWrapper "${electron-unwrapped}/libexec/electron/electron" "$out/bin/electron" \
+                "''${gappsWrapperArgs[@]}" \
+                --set CHROME_DEVEL_SANDBOX $out/libexec/electron/chrome-sandbox
+
+              ln -s ${electron-unwrapped}/libexec $out/libexec
+            '';
+        });
+  };
+in
+
 {
+  # remove when electron is working again
+  nixpkgs.overlays = [ myOverlay ];
+
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   imports =
     [ # Include the results of the hardware scan.
