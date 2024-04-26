@@ -115,6 +115,15 @@
     ];
   };
 
+  home.packages = [
+    (pkgs.writeShellScriptBin "dl-logseq" ''
+      rclone -v sync google_drive:/logseq ~/logseq/ --backup-dir ~/logseq-rclone-backup/
+    '')
+    (pkgs.writeShellScriptBin "ul-logseq" ''
+      rclone -v sync ~/logseq/ google_drive:/logseq --backup-dir google_drive:/logseq-rclone-backup/
+    '')
+  ];
+
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
