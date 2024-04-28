@@ -114,6 +114,8 @@ in
    '';
   };
 
+  services.zerotierone.enable = true;
+
   # Network diagnostics tool
   programs.mtr.enable = true;
 

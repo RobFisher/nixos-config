@@ -31,3 +31,7 @@ Recreate it and use these commands to add the VPN to the Network Manager tray.
 
     nmcli connection import type wireguard file homevpn.conf
     nmcli connection modify homevpn autoconnect no
+
+## Zerotier One
+
+    sudo zerotier-cli join <network id>
