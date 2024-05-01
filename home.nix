@@ -41,7 +41,7 @@
     enableCompletion = true;
     bashrcExtra = ''
       eval "$(starship init bash)"
-      neofetch
+      fastfetch
     '';
     shellAliases = {
       cd = "z";

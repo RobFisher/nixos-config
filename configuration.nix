@@ -164,7 +164,7 @@
     lsd
     bat
     ripgrep
-    neofetch
+    fastfetch
     rclone
     logseq
     keepassxc
