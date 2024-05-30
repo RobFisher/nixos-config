@@ -146,6 +146,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.sessionVariables = {
+    FLAKE = "/home/rob/nixos-config";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -156,6 +159,7 @@
     wezterm
     cifs-utils
     nvd
+    nh
     nushellFull
     nushellPlugins.formats
     vim

@@ -9,13 +9,10 @@ This is a way to see what packages will be made before commiting to an update.
 ```shell
 cd <directory containing this repo>
 nix flake update --commit-lock-file
-nixos-rebuild build --flake .
-
-# see what is about to change
-nvd diff /run/current-system result
+nh os build
 
 # if happy, switch to the updated packages
-sudo nixos-rebuild switch --flake .
+nh os switch
 ```
 
 Consider rebooting if the kernel has been updated.
