@@ -70,6 +70,14 @@
   # Network diagnostics tool
   programs.mtr.enable = true;
 
+  # Nixos helper
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 8";
+    flake = "/home/rob/nixos-config";
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/London";
 
@@ -146,10 +154,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.sessionVariables = {
-    FLAKE = "/home/rob/nixos-config";
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -159,7 +163,6 @@
     wezterm
     cifs-utils
     nvd
-    nh
     nushellFull
     nushellPlugins.formats
     vim
@@ -187,12 +190,13 @@
     options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
   };
 
-  nix.gc = {
-    automatic = true;
-    randomizedDelaySec = "14m";
-    options = "--delete-older-than 30d";
-    dates = "weekly";
-  };
+  # going to try using the nh clean feature instead
+  #nix.gc = {
+  #  automatic = true;
+  #  randomizedDelaySec = "14m";
+  #  options = "--delete-older-than 30d";
+  #  dates = "weekly";
+  #};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
