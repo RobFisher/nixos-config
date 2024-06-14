@@ -184,6 +184,11 @@
     wireguard-tools
   ];
 
+  # Electron used by logseq is marked as insecure
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-27.3.11"
+  ];
+
   fileSystems."/mnt/network-shared-files" = {
     device = "packmule.super:/mnt/packmule_pool/backup/samwise_rob_home/network-shared-files";
     fsType = "nfs";
