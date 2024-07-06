@@ -191,6 +191,9 @@
     kmplayer
     nixd
     wireguard-tools
+    btop
+    dust
+    tldr
   ];
 
   # Electron used by logseq is marked as insecure
