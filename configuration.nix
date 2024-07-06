@@ -65,6 +65,15 @@
    '';
   };
 
+  networking = {
+    interfaces = {
+      enp0s13f0u4u4.ipv4.addresses = [{
+        address = "192.168.103.2";
+        prefixLength = 24;
+      }];
+    };
+  };
+
   services.zerotierone.enable = true;
 
   # Network diagnostics tool
