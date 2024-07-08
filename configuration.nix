@@ -30,6 +30,11 @@
     "d /mnt/backup 1755 root root"
   ];
 
+  # turn off fingerprint reader because fprintd build is failing
+  # see: https://github.com/NixOS/nixpkgs/issues/298150
+  # though I think I have a different problem
+  services.fprintd.enable = false;
+
   # set up sops for secrets
   sops.defaultSopsFile = ./secrets/example.yaml;
   sops.age.sshKeyPaths = [ "/home/rob/.ssh/id_ed25519" ];
